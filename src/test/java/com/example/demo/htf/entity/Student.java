@@ -1,5 +1,7 @@
 package com.example.demo.htf.entity;
 
+import java.util.Objects;
+
 /**
  * @Description: java类作用描述
  * @Author: huangtf
@@ -26,7 +28,13 @@ public class Student {
         this.age = age;
     }
 
+    public Student() {
+    }
 
+    public Student(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
 
     @Override
     public String toString() {
@@ -34,5 +42,19 @@ public class Student {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(name, student.name) &&
+                Objects.equals(age, student.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 }
