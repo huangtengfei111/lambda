@@ -3,10 +3,7 @@ package com.example.demo.htf;
 import com.example.demo.htf.entity.Student;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -48,5 +45,16 @@ public class StreamCollect {
                 .map(Student::getName)
                 .collect(Collectors.toCollection(ArrayList::new));
         arrayList.forEach(System.out::println);
+    }
+
+    //学生年龄的操作
+    @Test
+    public void test01(){
+        IntSummaryStatistics collect = list.stream()
+                .collect(Collectors.summarizingInt(s -> s.getAge()));
+        System.out.println(collect.getSum());
+        System.out.println(collect.getMax());
+        System.out.println(collect.getAverage());
+
     }
 }
